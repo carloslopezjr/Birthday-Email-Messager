@@ -13,10 +13,7 @@ def currentTime():
 
     # get the current date in the / / / format
     currentDate = datetime.now().strftime("%m/%d")
-    # create a list of dictionaries with people's names
-
-    # print(f"{currentDate} {currentHour}")
-
+    
     return currentHour, currentDate
 
 
