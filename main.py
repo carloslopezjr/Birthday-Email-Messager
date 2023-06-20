@@ -33,6 +33,8 @@ def birthdayFinder():
             # print out a specific statement including the name
 
             print(f"It's {name}'s birthday!")
+            
+            personInfo[x]["birthdayToday"] = True
             x += 1
 
         else:
@@ -60,20 +62,30 @@ def dailyChecker():
 personInfo = [{
     "name": "Carlos",
     "birthday": "06/19",
-    "phone": "210-419-0444"
+    "phone": "210-419-0444",
+    "birthdayToday": False
 },
 
     {
         "name": "Kyra",
         "birthday": "04/11",
-        "phone": "961-775-2092"
+        "phone": "961-775-2092",
+        "birthdayToday": False
 },
     {
         "name": "Kyra",
-        "birthday": "06/19",
-        "phone": "961-775-2092"
+        "birthday": "06/20",
+        "phone": "961-775-2092",
+        "birthdayToday": False
 }
 ]
 
+
+
 # Outputs
-dailyChecker()
+# dailyChecker()
+
+currentTime()
+birthdayFinder()
+
+print(personInfo)
