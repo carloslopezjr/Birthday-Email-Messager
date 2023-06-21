@@ -4,10 +4,19 @@ import time
 
 import random
 
+from email.message import EmailMessage
+
+import ssl
+
+import smtplib
+
 # 11am == 11:00
-def storingNames(name, birthday, phone, birthdayToday = False):
+
+# function that makes it easy to store names
+def storingNames(name, birthday, phone, birthdayToday=False):
     None
 
+# gets current time
 def currentTime():
 
     global currentDate
@@ -21,7 +30,7 @@ def currentTime():
 
     return currentHour, currentDate
 
-
+# uses currentTime() to find if a birthday matches current date
 def birthdayFinder():
 
     # we want to loop through the person info list
@@ -42,7 +51,7 @@ def birthdayFinder():
         else:
             x += 1
 
-
+# checks time, and finds who's birthday is today
 def dailyChecker():
 
     timer = 0
@@ -51,7 +60,7 @@ def dailyChecker():
         currentTime()  # run function
 
         # if current time is 11:00
-        if currentHour == "11:00":
+        if currentHour == "00:25":
 
             # check to see if it's someones birthday today
             birthdayFinder()  # run function
@@ -64,50 +73,71 @@ def dailyChecker():
             # pauses between each while interval
             time.sleep(60)
 
-
+# drafts email message
 def personalizedMessage():
 
     # data of messages that will randomly be sent
     messages = ["Wishing you a fantastic birthday filled with joy and laughter!",
                 "I hope you have a good day!",
                 "Sending you heartfelt wishes on your special day.", "Cheers to another year of amazing friendship!", "Enjoy your special day to the fullest!", "Have an absolutely fantastic day!", "May this day mark the beginning of an extraordinary year for you.", "Sending you lots of love and happiness on your birthday.", "May this year be filled with exciting opportunities, great accomplishments, and endless happiness."
-
-
                 ]
+    
+    randomMessage = random.choice(messages)
+    
+    return randomMessage
 
-    x = 0
-    while x < len(personInfo):
-        if personInfo[x]["birthdayToday"] == True:
+# sends emails to people
+def emailSender(email_reciever, body):
+    email_sender = 'carlosssolrac1@gmail.com'
+    email_password = ""
 
-            # get the value of key "name"
-            name = personInfo[x]["name"]
+    subject = "Happy Birthday!"
 
-            randomIndex = random.randrange(len(messages))
+    em = EmailMessage()
+    em['From'] = email_sender
+    em['To'] = email_reciever
+    em['Subject'] = subject
+    em.set_content(body)
 
-            print(f"Happy Birthday {name}! {messages[randomIndex]}")
-            x += 1
+    context = ssl.create_default_context()
+
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
+        smtp.login(email_sender, email_password)
+        smtp.sendmail(email_sender, email_reciever, em.as_string())
 
 
 # data base of information
 personInfo = [{
     "name": "Carlos",
-    "birthday": "06/20",
+    "birthday": "06/21",
     "phone": "210-419-0444",
+    "email": "bravodude0619@gmail.com",
     "birthdayToday": False
 },
 
     {
         "name": "Kyra",
-        "birthday": "04/11",
+        "birthday": "06/21",
         "phone": "961-775-2092",
+        "email": "kyraisabellearguelles@gmail.com",
         "birthdayToday": False
 }
 ]
 
 
 # Outputs
+def start():
+    
+    dailyChecker()
+    
+    x= 0
+    while x < len(personInfo):
+        if personInfo[x]["birthdayToday"] == True:
 
-'''dailyChecker()'''
-currentTime()
-birthdayFinder()
-personalizedMessage()
+            email = personInfo[x]['email'] # find the email of the person's birthday
+            message = personalizedMessage() # draft the message for the person
+            emailSender(email, message) # send the message to designated persons or persons'
+
+            x += 1
+
+start()
