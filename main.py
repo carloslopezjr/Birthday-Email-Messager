@@ -1,6 +1,6 @@
 from datetime import datetime  # import the time library into the program
 
-import time
+import time 
 
 import random
 
@@ -10,7 +10,6 @@ import ssl
 
 import smtplib
 
-# 11am == 11:00
 
 # function that makes it easy to store names
 def storingNames(name, birthday, phone, birthdayToday=False):
@@ -105,6 +104,22 @@ def emailSender(email_reciever, body):
         smtp.login(email_sender, email_password)
         smtp.sendmail(email_sender, email_reciever, em.as_string())
 
+# starts the program
+def start():
+
+    dailyChecker()
+
+    x = 0
+    while x < len(personInfo):
+        if personInfo[x]["birthdayToday"] == True:
+
+            # find the email of the person's birthday
+            email = personInfo[x]['email']
+            message = personalizedMessage()  # draft the message for the person
+            # send the message to designated persons or persons'
+            emailSender(email, message)
+
+            x += 1
 
 # data base of information
 personInfo = [{
@@ -124,20 +139,5 @@ personInfo = [{
 }
 ]
 
-
-# Outputs
-def start():
-    
-    dailyChecker()
-    
-    x= 0
-    while x < len(personInfo):
-        if personInfo[x]["birthdayToday"] == True:
-
-            email = personInfo[x]['email'] # find the email of the person's birthday
-            message = personalizedMessage() # draft the message for the person
-            emailSender(email, message) # send the message to designated persons or persons'
-
-            x += 1
-
+# outputs
 start()
