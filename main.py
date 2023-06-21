@@ -124,16 +124,16 @@ def start():
 # data base of information
 personInfo = [{
     "name": "Carlos",
-    "birthday": "06/21",
-    "phone": "210-419-0444",
+    "birthday": "06/19",
+    "phone": "",
     "email": "bravodude0619@gmail.com",
     "birthdayToday": False
 },
 
     {
         "name": "Kyra",
-        "birthday": "06/21",
-        "phone": "961-775-2092",
+        "birthday": "04/11",
+        "phone": "",
         "email": "kyraisabellearguelles@gmail.com",
         "birthdayToday": False
 }
