@@ -11,7 +11,7 @@ import ssl
 import smtplib
 
 
-# function that makes it easy to store names
+# function that makes it easy to store names // not working yet
 def storingNames(name, birthday, phone, birthdayToday=False):
     None
 
