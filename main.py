@@ -158,10 +158,11 @@ def preStart():
         int_time = int(time)
         
         if int_time == 00:
-            print("Starting the program...")
             start()
             x = 1
 
 
 # outputs
-preStart()
+if __name__ == "__main__":
+    print("Starting the program...")
+    preStart()
