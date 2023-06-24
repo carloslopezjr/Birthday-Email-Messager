@@ -27,6 +27,8 @@ def currentTime():
     # get the current date in the / / / format
     currentDate = datetime.now().strftime("%m/%d")
 
+    # print(currentDate, currentHour) // test 
+
     return currentHour, currentDate
 
 # uses currentTime() to find if a birthday matches current date
@@ -53,21 +55,24 @@ def birthdayFinder():
 # checks time, and finds who's birthday is today
 def dailyChecker():
 
+    global currentHour2
+
     timer = 0
     while timer == 0:
 
         currentTime()  # run function
 
         # if current time is 11:00
-        if currentHour == "00:25":
+        if currentHour == "00:00":
 
             # check to see if it's someones birthday today
             birthdayFinder()  # run function
             timer += 1
 
         else:
-            # no birthday detected
-            print(f"No Birthday Detected {currentHour}")
+            # no birthday 
+            currentHour2 = datetime.now().time().strftime("%H:%M:%S")
+            print(f"No Birthday Detected {currentHour2}")
 
             # pauses between each while interval
             time.sleep(60)
@@ -104,6 +109,9 @@ def emailSender(email_reciever, body):
         smtp.login(email_sender, email_password)
         smtp.sendmail(email_sender, email_reciever, em.as_string())
 
+    currentHour3 = datetime.now().time().strftime("%H:%M:%S")
+    print(f"Email sent exactly at {currentHour3}")
+
 # starts the program
 def start():
 
@@ -139,5 +147,21 @@ personInfo = [{
 }
 ]
 
+# starts the program exactly at 00 seconds
+def preStart():
+
+    x = 0
+    while x == 0:
+
+        time = datetime.now().time().strftime("%S")
+        
+        int_time = int(time)
+        
+        if int_time == 00:
+            print("Starting the program...")
+            start()
+            x = 1
+
+
 # outputs
-start()
+preStart()
