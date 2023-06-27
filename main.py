@@ -134,7 +134,7 @@ personInfo = [{
     "name": "Carlos",
     "birthday": "06/19",
     "phone": "",
-    "email": "bravodude0619@gmail.com",
+    "email": "",
     "birthdayToday": False
 },
 
@@ -142,7 +142,7 @@ personInfo = [{
         "name": "Kyra",
         "birthday": "04/11",
         "phone": "",
-        "email": "kyraisabellearguelles@gmail.com",
+        "email": "",
         "birthdayToday": False
 }
 ]
