@@ -92,7 +92,7 @@ def personalizedMessage():
 
 # sends emails to people
 def emailSender(email_reciever, body):
-    email_sender = 'carlosssolrac1@gmail.com'
+    email_sender = ''
     email_password = ""
 
     subject = "Happy Birthday!"
